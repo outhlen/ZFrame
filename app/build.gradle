@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    //GreenDao配置
+    greendao {
+        schemaVersion 1
+        //daoPackage 'com.greendao.gen'  //dao包名
+        //targetGenDir 'src/main/java'  //生成目录
+    }
+    
+    //lint配置
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.zcolin.frame.demo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        // dex突破65535的限制
+        //multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources false  //移除无用的resource文件（如果使用getIdentifier函数的需要关闭）
+            zipAlignEnabled true  //Zipalign优化
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':libFrame')
+
+    compile 'com.android.support:appcompat-v7:24.2.1'
+}
+
+
