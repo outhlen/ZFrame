@@ -20,11 +20,14 @@ import okhttp3.Request;
 
 /**
  * 返回gson对象
+ *
+ *  修改版（2017/08/17 15:30）
  */
 public abstract class ZGsonResponse<T> extends GsonCallback<T> {
 
     private ProgressDialog proBar;        //请求过程中的进度条
     private String         barMsg;        //进度条上的文字
+
 
     public ZGsonResponse(Class<T> cls) {
         super(cls);

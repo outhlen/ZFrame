@@ -9,6 +9,7 @@
 
 package com.zcolin.frame.demo;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
@@ -40,7 +41,6 @@ public class HttpDemoActivity extends BaseActivity implements View.OnClickListen
     private LinearLayout llContent;
     private TextView     textView;
     private ArrayList<Button> listButton = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +50,7 @@ public class HttpDemoActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void init() {
+
         llContent = getView(R.id.ll_content);
         textView = getView(R.id.textview);
         textView.setMovementMethod(new ScrollingMovementMethod());
