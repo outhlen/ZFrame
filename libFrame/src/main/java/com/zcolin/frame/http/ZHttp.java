@@ -28,7 +28,7 @@ import java.util.UUID;
 /**
  * Http工具类, Http请求封装类
  * <p/>
- * 所有函数的返回值为http请求的唯一标识，可以使用此标识调用{@link ZHttp#cancelRequest(String)}取消请求
+ * 所有函数的返回值为http请求的唯一标识，可以使用此标识调用
  */
 public class ZHttp {
 
@@ -361,6 +361,10 @@ public class ZHttp {
     private static Map<String, String> beanToMap(Object bean) {
         if (bean == null) {
             return null;
+        }
+
+        if(bean instanceof  Map){
+            return (Map<String, String>) bean;
         }
 
         Map<String, String> result = new HashMap<String, String>();
